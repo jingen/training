@@ -27,7 +27,7 @@ public class First extends Test implements TestInterface, TestInterface2 {
 	}
 
 	/**
-	 * Function: sum one to ten
+	 * Function: sum one to ten 
 	 * 
 	 * @return the sum of one to ten
 	 */
