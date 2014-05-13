@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * @author jlin
- * 
+ * First
  */
 public class First extends Test implements TestInterface, TestInterface2 {
 	private static final int SUM = 18;
