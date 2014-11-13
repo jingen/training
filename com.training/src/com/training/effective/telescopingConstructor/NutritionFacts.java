@@ -40,4 +40,41 @@ public class NutritionFacts {
 		this.sodium = sodium;
 		this.carbohydrate = carbohydrate;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + calories;
+		result = prime * result + carbohydrate;
+		result = prime * result + fat;
+		result = prime * result + servingSize;
+		result = prime * result + servings;
+		result = prime * result + sodium;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NutritionFacts other = (NutritionFacts) obj;
+		if (calories != other.calories)
+			return false;
+		if (carbohydrate != other.carbohydrate)
+			return false;
+		if (fat != other.fat)
+			return false;
+		if (servingSize != other.servingSize)
+			return false;
+		if (servings != other.servings)
+			return false;
+		if (sodium != other.sodium)
+			return false;
+		return true;
+	}
 }
