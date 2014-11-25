@@ -56,10 +56,12 @@ public class TwoSum3 {
 //		myTest.add(5);
 //		System.out.println(myTest.find(4));
 //		System.out.println(myTest.find(7));
+
 		myTest.add2(1);
 		myTest.add2(3);
 		myTest.add2(5);
 		System.out.println(myTest.find2(4));
 		System.out.println(myTest.find2(7));
+		
 	}
 }
