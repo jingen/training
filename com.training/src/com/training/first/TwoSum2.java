@@ -1,5 +1,9 @@
 package com.training.first;
-
+/**
+ * the array is sorted.
+ * @author jingenlin
+ *
+ */
 public class TwoSum2 {
 	public static final int NO_FOUND = -1;
 	
