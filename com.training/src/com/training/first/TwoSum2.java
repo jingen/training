@@ -1,6 +1,6 @@
 package com.training.first;
 /**
- * the array is sorted.
+ * The array is sorted.
  * @author jingenlin
  *
  */
