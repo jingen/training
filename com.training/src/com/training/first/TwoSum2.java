@@ -1,7 +1,7 @@
 package com.training.first;
 /**
  * The array is sorted.
- * @author jingenlin
+ * @author Jingen Lin
  *
  */
 public class TwoSum2 {
