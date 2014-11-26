@@ -3,7 +3,7 @@ package com.training.first;
 public class NeedleHaystack {
 
 	/**
-	 * 
+	 * Find a needle in a haystack.
 	 * @param aString
 	 * @param subString
 	 * @return
