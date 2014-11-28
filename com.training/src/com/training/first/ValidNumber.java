@@ -36,29 +36,47 @@ public class ValidNumber {
 	public static boolean isValidNumber2(String aString){
 		int i=0, n=aString.length();
 		while(i<n&&Character.isWhitespace(aString.charAt(i))) i++;
-		if(aString.charAt(i)=='+'&&aString.charAt(i)=='-') i++;
-		boolean hasDigits = false;
+		if(i<n&&(aString.charAt(i)=='+'||aString.charAt(i)=='-')) i++;
+		boolean isNumeric = false;
 		while(i<n && Character.isDigit(aString.charAt(i))) {
 			i++;
-			hasDigits = true;
+			isNumeric = true;
 		}
 		if(i<n && aString.charAt(i)=='.'){
 			i++;
 			while(i<n && Character.isDigit(aString.charAt(i))){
 				i++;
-				hasDigits = true;
+				isNumeric = true;
+			}
+		}
+		/**
+		 * If the number contains an optional exponent part.
+		 */
+		if(isNumeric&&i<n&&aString.charAt(i)=='e'){
+			i++;
+			isNumeric = false;
+			if(i<n&&(aString.charAt(i)=='+'||aString.charAt(i)=='-')) i++;
+			while(i<n&&Character.isDigit(aString.charAt(i))){
+				i++;
+				isNumeric = true;
 			}
 		}
 		while(i<n&&Character.isWhitespace(aString.charAt(i))) i++;
-		return hasDigits && i==n;
+		return isNumeric && i==n;
 	}
 
 	public static void main(String[] args){
-		System.out.println(isValidNumber("0.1"));
-		System.out.println(isValidNumber2("0.1"));
-		System.out.println(isValidNumber("0.."));
-		System.out.println(isValidNumber2("0.."));
-		System.out.println(isValidNumber("0"));
-		System.out.println(isValidNumber2("0"));
+//		System.out.println(isValidNumber("0.1"));
+//		System.out.println(isValidNumber2("0.1"));
+//		System.out.println(isValidNumber("0.."));
+//		System.out.println(isValidNumber2("0.."));
+//		System.out.println(isValidNumber("0"));
+//		System.out.println(isValidNumber2("0"));
+		System.out.println(isValidNumber2("30e-1"));
+		System.out.println(isValidNumber2("30e-33"));
+		System.out.println(isValidNumber2("30e"));
+		System.out.println(isValidNumber2("30e1"));
+		System.out.println(isValidNumber2("30e10"));
+		System.out.println(isValidNumber2("e0"));
 	}
 }
