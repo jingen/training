@@ -18,6 +18,7 @@ public class ValidNumber {
 		}
 
 		boolean hasDecimalPoint = false;
+		boolean isNumeric = false;
 		for(i=0; i<aString.length(); i++){
 			if(!Character.isDigit(aString.charAt(i))){
 				if(aString.charAt(i)=='.' && !hasDecimalPoint) {
@@ -25,11 +26,39 @@ public class ValidNumber {
 				}else{
 					return false;
 				}
+			}else{
+				isNumeric = true;
 			}
 		}
-		return true;
+		return isNumeric;
 	}
+	
+	public static boolean isValidNumber2(String aString){
+		int i=0, n=aString.length();
+		while(i<n&&Character.isWhitespace(aString.charAt(i))) i++;
+		if(aString.charAt(i)=='+'&&aString.charAt(i)=='-') i++;
+		boolean hasDigits = false;
+		while(i<n && Character.isDigit(aString.charAt(i))) {
+			i++;
+			hasDigits = true;
+		}
+		if(i<n && aString.charAt(i)=='.'){
+			i++;
+			while(i<n && Character.isDigit(aString.charAt(i))){
+				i++;
+				hasDigits = true;
+			}
+		}
+		while(i<n&&Character.isWhitespace(aString.charAt(i))) i++;
+		return hasDigits && i==n;
+	}
+
 	public static void main(String[] args){
 		System.out.println(isValidNumber("0.1"));
+		System.out.println(isValidNumber2("0.1"));
+		System.out.println(isValidNumber("0.."));
+		System.out.println(isValidNumber2("0.."));
+		System.out.println(isValidNumber("0"));
+		System.out.println(isValidNumber2("0"));
 	}
 }
