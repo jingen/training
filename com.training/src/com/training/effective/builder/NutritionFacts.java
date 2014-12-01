@@ -76,4 +76,28 @@ public class NutritionFacts {
 		this.carbohydrate = builder.carbohydrate;
 		this.sodium = builder.sodium;
 	}
+
+	public int getServingSize() {
+		return servingSize;
+	}
+
+	public int getServings() {
+		return servings;
+	}
+
+	public int getCalories() {
+		return calories;
+	}
+
+	public int getFat() {
+		return fat;
+	}
+
+	public int getSodium() {
+		return sodium;
+	}
+
+	public int getCarbohydrate() {
+		return carbohydrate;
+	}
 }
