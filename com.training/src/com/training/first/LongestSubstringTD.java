@@ -1,6 +1,8 @@
 package com.training.first;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class LongestSubstringTD {
@@ -18,7 +20,40 @@ public class LongestSubstringTD {
 		}
 		return Math.max(longest, s.length()-i);
 	}
-
+	public static int lengthOfLongestSubstringTwoDistinct3(String s){
+		int[] count = new int[256];
+		int i=0, numDistinct=0, maxLen=0;
+		for(int j=0; j<s.length(); j++){
+			if(count[s.charAt(j)]==0) numDistinct++;
+			count[s.charAt(j)]++;
+			while(numDistinct>2){
+				count[s.charAt(i)]--;
+				if(count[s.charAt(i)]==0) numDistinct--;
+				i++;
+			}
+			maxLen=Math.max(j-i+1, maxLen);
+		}
+		return maxLen;
+	}
+	public static int lengthOfLongestSubstringTwoDistinct4(String s){
+		Map<Character, Integer> occurrence = new HashMap<Character, Integer>();
+		int i=0, numDistinct=0, longest=0;
+		for(int j=0; j<s.length(); j++){
+			if(occurrence.containsKey(s.charAt(j))){
+				occurrence.put(s.charAt(j), occurrence.get(s.charAt(j))+1);
+			}else{
+				occurrence.put(s.charAt(j), 1);
+				numDistinct++;
+			}
+			while(numDistinct>2){
+				occurrence.put(s.charAt(i), occurrence.get(s.charAt(i))-1);
+				if(occurrence.get(s.charAt(i))==0) numDistinct--;
+				i++;
+			}
+			longest = Math.max(longest, j-i+1);
+		}
+		return longest;
+	}
 	public static int lengthOfLongestSubstringTwoDistinct2(String s) {
 		int longest = 0;
 		Set<Character> charSet = new HashSet<Character>();
@@ -43,5 +78,7 @@ public class LongestSubstringTD {
 		String s = "ecebaxyzzzz";
 		System.out.println(lengthOfLongestSubstringTwoDistinct(s));
 		System.out.println(lengthOfLongestSubstringTwoDistinct2(s));
+		System.out.println(lengthOfLongestSubstringTwoDistinct3(s));
+		System.out.println(lengthOfLongestSubstringTwoDistinct4(s));
 	}
 }
