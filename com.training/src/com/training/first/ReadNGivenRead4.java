@@ -20,4 +20,28 @@ public class ReadNGivenRead4 {
 		}
 		return readBytes;
 	}
+	
+	public int read2(char[] buf, int n){
+		char[] buffer = new char[4];
+		int readBytes = 0;
+		boolean eof = false;
+		while(!eof && readBytes<n){
+			int sz = read4(buffer);
+			if(sz<4) eof=true;
+			int bytes = Math.max(sz, n-readBytes);
+			System.arraycopy(buffer, 0, buf, readBytes, bytes);
+			readBytes += bytes;
+		}
+		return readBytes;
+	}
+	
+	public static void main(String[] args){
+		int[] xyz = {1,3,5,2,4,6};
+		int[] abc = new int[6];
+		System.out.println(xyz[0]);
+		System.out.println(xyz[5]);
+		System.arraycopy(xyz, 0, abc, 0, 6);
+		System.out.println(abc[0]);
+		System.out.println(abc[5]);
+	}
 }
