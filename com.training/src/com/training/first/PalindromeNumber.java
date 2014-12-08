@@ -18,11 +18,13 @@ public class PalindromeNumber {
 	}
 	
 	public static boolean isPanlindrome2(int number){
+		if(number<0) return false;
 		int div = 1;
 		while(number/div>=10){
 			div *= 10;
 		}
-		while(number>=10){
+//		while(number>=10){
+		while(number != 0){
 			int head = number/div;
 			int tail = number%10;
 			if(head!=tail) return false;
