@@ -1,5 +1,8 @@
 package com.training.first;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.training.first.MergeTwoSortedList.ListNode;
 
 public class MergeKSortedLinkedList {
@@ -44,6 +47,9 @@ public class MergeKSortedLinkedList {
 		p = p.next;
 		p.next = new ListNode(19);
 		
+		List<ListNode> lists = new ArrayList<ListNode>();
+		lists.add(l1);
+		lists.add(l2);
 //		MergeTwoSortedList.out(l1);
 //		MergeTwoSortedList.out(l2);
 //		merge(l1,l2);
