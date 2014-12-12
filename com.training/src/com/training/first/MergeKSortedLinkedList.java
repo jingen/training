@@ -1,7 +1,10 @@
 package com.training.first;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 import com.training.first.MergeTwoSortedList.ListNode;
 
@@ -27,6 +30,36 @@ public class MergeKSortedLinkedList {
 		return helper.next;
 	}
 	
+	private static final Comparator<ListNode> listComparator = 
+			new Comparator<ListNode>(){
+		@Override
+		public int compare(ListNode x, ListNode y){
+			return x.val - y.val;
+		}
+	};
+	public static ListNode mergeLists(List<ListNode> lists){
+		if(lists==null) throw new IllegalArgumentException("Lists is null.");
+		if(lists.isEmpty()) return null;
+		Queue<ListNode> queue = new PriorityQueue<ListNode>(lists.size(), listComparator);
+		for(ListNode listNode: lists){
+			if(listNode!=null) {
+				queue.add(listNode);
+			}
+		}
+		
+		ListNode helperHead = new ListNode(0);
+		ListNode p = helperHead;
+		while(!queue.isEmpty()){
+			ListNode listNode = queue.poll();
+			p.next = listNode;
+			p = p.next;
+			if(listNode.next!=null){
+				queue.add(listNode.next);
+			}
+		}
+		return helperHead.next;
+	}
+	
 	public static void main(String[] args){
 		ListNode l1 = new ListNode(3);
 		ListNode p = l1;
@@ -37,6 +70,8 @@ public class MergeKSortedLinkedList {
 		p.next = new ListNode(11);
 		p = p.next;
 		p.next = new ListNode(18);
+		
+		
 		ListNode l2 = new ListNode(4);
 		p = l2;
 		p.next = new ListNode(5);
@@ -47,12 +82,21 @@ public class MergeKSortedLinkedList {
 		p = p.next;
 		p.next = new ListNode(19);
 		
+		
+		ListNode l3 = new ListNode(1);
+		p = l3;
+		p.next = new ListNode(12);
+		p = p.next;
+		p.next = new ListNode(17);
+		p = p.next;
+		p.next = new ListNode(33);
+		p = p.next;
+		p.next = new ListNode(59);
+		
 		List<ListNode> lists = new ArrayList<ListNode>();
 		lists.add(l1);
 		lists.add(l2);
-//		MergeTwoSortedList.out(l1);
-//		MergeTwoSortedList.out(l2);
-//		merge(l1,l2);
-		MergeTwoSortedList.out(merge(l1, l2));
+		lists.add(l3);
+		MergeTwoSortedList.out(mergeLists(lists));
 	}
 }
