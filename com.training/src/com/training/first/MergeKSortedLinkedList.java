@@ -30,6 +30,21 @@ public class MergeKSortedLinkedList {
 		return helper.next;
 	}
 	
+	public static ListNode mergeKList(List<ListNode> lists){
+		if(lists==null) throw new IllegalArgumentException("lists is null");
+		if(lists.isEmpty()) return null;
+		int end = lists.size()-1;
+		while(end>0){
+			int begin = 0;
+			while(begin<end){
+				lists.set(begin, merge(lists.get(begin), lists.get(end)));
+				begin++;
+				end--;
+			}
+		}
+		return lists.get(0);
+	}
+	
 	private static final Comparator<ListNode> listComparator = 
 			new Comparator<ListNode>(){
 		@Override
@@ -97,6 +112,7 @@ public class MergeKSortedLinkedList {
 		lists.add(l1);
 		lists.add(l2);
 		lists.add(l3);
-		MergeTwoSortedList.out(mergeLists(lists));
+//		MergeTwoSortedList.out(mergeLists(lists));
+		MergeTwoSortedList.out(mergeKList(lists));
 	}
 }
