@@ -3,8 +3,6 @@ package com.training.first;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.training.first.MergeTwoSortedList.ListNode;
-
 public class CopyListWithRandomPointer {
 
 	public static class RandomListNode{
@@ -15,6 +13,14 @@ public class CopyListWithRandomPointer {
 		RandomListNode(int val, int index){
 			this.val = val;
 			this.index = index;
+		}
+		RandomListNode(RandomListNode node){
+			this.val = node.val;
+			this.index = node.val;
+		}
+		@Override
+		public String toString(){
+			return "Val is"+val+", Index is" +index+", random is [" + random.val +","+random.index +"]";
 		}
 	}
 	
@@ -39,18 +45,56 @@ public class CopyListWithRandomPointer {
 		return helperHead.next;
 	}
 	
-	public static void out(ListNode listNode){
-		MergeTwoSortedList.out(listNode);
+	public static RandomListNode copyRandomList2(RandomListNode head){
+		RandomListNode p = head;
+		while(p != null){
+			RandomListNode next = p.next;
+			RandomListNode copy = new RandomListNode(p);
+			p.next = copy;
+			copy.next = next;
+			p = next;
+		}
+		p = head;
+		while(p != null){
+			p.next.random = (p.random != null) ? p.random.next:null;
+			p = p.next.next;
+		}
+		p = head;
+		RandomListNode headCopy = (p!=null)? p.next : null;
+		while(p != null){
+			RandomListNode copy = p.next;
+			p.next = copy.next;
+			p = p.next;
+			copy.next = (p!=null)? p.next:null;
+		}
+		return headCopy;
+
+	}
+	
+	public static void out(RandomListNode listNode){
+		RandomListNode p = listNode;
+		while(p!=null){
+			System.out.println(p);
+			p = p.next;
+		}
 	}
 	public static void main(String[] args){
-		ListNode l1 = new ListNode(11);
-		ListNode p = l1;
-		p.next = new ListNode(8);
+		RandomListNode l1 = new RandomListNode(11,1);
+		RandomListNode p = l1;
+		p.next = new RandomListNode(8,2);
+		p.random = l1.next;
 		p = p.next;
-		p.next = new ListNode(9);
+		p.next = new RandomListNode(9,3);
+		p.random = l1.next.next;
 		p = p.next;
-		p.next = new ListNode(3);
+		p.next = new RandomListNode(3,4);
+		p.random = l1.next.next.next;
 		p = p.next;
-		p.next = new ListNode(18);
+		p.next = new RandomListNode(18,5);
+		p.random = l1.next.next.next.next;
+		p.next.random = l1 ;
+//		out(l1);
+//		out(copyRandomList(l1));
+		out(copyRandomList2(l1));
 	}
 }
