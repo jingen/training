@@ -1,5 +1,8 @@
 package com.training.first;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MinimumDepthOfBinaryTree {
 	public static int minimumDepth(TreeNode root){
 		if(root==null) return 0;
@@ -9,7 +12,8 @@ public class MinimumDepthOfBinaryTree {
 	}
 	
 	public static int minDepth(TreeNode root){
-		
+		if(root==null) return 0;
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
 	}
 
 	public static void main(String[] args){
