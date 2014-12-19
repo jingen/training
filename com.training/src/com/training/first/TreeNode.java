@@ -28,7 +28,6 @@ public class TreeNode {
 		public TreeNode build(){
 			return new TreeNode(this);
 		}
-		
 	}
 	
 	private TreeNode(Builder builder){

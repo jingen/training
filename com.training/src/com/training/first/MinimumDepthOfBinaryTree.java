@@ -7,10 +7,11 @@ public class MinimumDepthOfBinaryTree {
 		if(root.right == null) return minimumDepth(root.left) + 1;
 		return Math.min(minimumDepth(root.left), minimumDepth(root.right)) + 1;
 	}
-	public static int maximumDepth(TreeNode root){
-		if(root==null) return 0;
-		return Math.max(maximumDepth(root.left), maximumDepth(root.right)) + 1;
+	
+	public static int minDepth(TreeNode root){
+		
 	}
+
 	public static void main(String[] args){
 		TreeNode treeNode1 = new TreeNode.Builder(6).build();
 		TreeNode treeNode2 = new TreeNode.Builder(15).build();
@@ -26,6 +27,5 @@ public class MinimumDepthOfBinaryTree {
 		TreeNode treeNode10 = new TreeNode.Builder(32).build();
 		treeNode5.right = treeNode10;
 		System.out.println(minimumDepth(treeNode9));
-		System.out.println(maximumDepth(treeNode9));
 	}
 }
