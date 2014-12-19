@@ -44,7 +44,8 @@ public class MergeKSortedLinkedList {
 		}
 		return lists.get(0);
 	}
-
+	
+	
 	private static final Comparator<ListNode> listComparator = 
 			new Comparator<ListNode>(){
 		@Override
