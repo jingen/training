@@ -14,6 +14,20 @@ public class MinimumDepthOfBinaryTree {
 	public static int minDepth(TreeNode root){
 		if(root==null) return 0;
 		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		q.add(root);
+		TreeNode rightMost = root;
+		int depth = 1;
+		while(!q.isEmpty()){
+			TreeNode node = q.poll();
+			if(node.left==null&&node.right==null) break;
+			if(node.left!=null) q.add(node.left);
+			if(node.right!=null) q.add(node.right);
+			if(node==rightMost){
+				depth++;
+				rightMost = (node.right==null)? node.left: node.right;
+			}
+		}
+		return depth;
 	}
 
 	public static void main(String[] args){
@@ -31,5 +45,6 @@ public class MinimumDepthOfBinaryTree {
 		TreeNode treeNode10 = new TreeNode.Builder(32).build();
 		treeNode5.right = treeNode10;
 		System.out.println(minimumDepth(treeNode9));
+		System.out.println(minDepth(treeNode9));
 	}
 }
