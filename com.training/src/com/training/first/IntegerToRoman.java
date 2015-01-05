@@ -17,18 +17,24 @@ public class IntegerToRoman {
 		"I"
 	};
 	
-	public String intToRoman(int num){
+	public static String intToRoman(int num){
 		StringBuilder roman = new StringBuilder();
-		int i=0;
+		int i = 0;
 		while(num>0){
 			int k = num/values[i];
 			for(int j=0; j<k; j++){
-				
+				roman.append(symbols[i]);
+				num -= values[i];
 			}
+			i++;
 		}
 		return roman.toString();
 	}
+
 	public static void main(String[] args){
-		
+		System.out.println(intToRoman(1));
+		System.out.println(intToRoman(3));
+		System.out.println(intToRoman(4));
+		System.out.println(intToRoman(44));
 	}
 }
