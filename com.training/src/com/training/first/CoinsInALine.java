@@ -40,9 +40,16 @@ public class CoinsInALine {
 		return P[0][N-1];
 	}
 
+	public static int P(int[] A, int start, int end){
+		if(start>end) return 0;
+		int p1 = A[start] + Math.min(P(A, start+2, end), P(A, start+1, end-1));
+		int p2 = A[end] + Math.min(P(A, start+1, end-1), P(A, start, end-2));
+		return Math.max(p1, p2);
+	}
 	public static void main(String[] args){
 		System.out.println("Coins in a Line.");
 		int[] A = {3,2,2,3,1,2};
-		maxMoney(A, 6);
+//		maxMoney(A, 6);
+		System.out.println(P(A, 0, A.length-1));
 	}
 }
