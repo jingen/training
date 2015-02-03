@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-    <project name="Hello World Project" default="info" basedir="..">
+    <project name="com.training" default="info" basedir="..">
     
     	<property file="build/build.properties"/>
     	<property name="mysite" value="www.urappzone.com"/>
