@@ -2,8 +2,11 @@
 
     <project name="Hello World Project" default="info" basedir="..">
     
+    	<property file="build/build.properties"/>
+    	<property name="mysite" value="www.urappzone.com"/>
         <target name="info">
-            <echo>Hello World - Welcome to Apache Ant!</echo>
+        	<echo>Apache Ant version is ${ant.version} - You are at ${sitename}</echo>
+        	<echo>My site is ${mysite}</echo>
         </target>
 
     </project>
