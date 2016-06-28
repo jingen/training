@@ -2,34 +2,40 @@ package com.training;
 
 import java.util.Scanner;
 
+import com.training.util.MathHelper;
+
 public class Calculator {
 
 	private static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
+//		Calculator calculator = new Calculator();
+//		calculator.calculate();
+		new Calculator().calculate();
+	}
+	
+	public void calculate(){
 		String input1, input2, inputOp, ifContinueOrNot = "Y";
+		InputHelper inputHelper = new InputHelper();
 		double result = 0;
 		while (ifContinueOrNot.equals("Y")) {
-			System.out.print("Enter first number:");
-			input1 = scanner.nextLine();
-			System.out.print("Enter second number:");
-			input2 = scanner.nextLine();
-			System.out.print("Enter the operation (+, -, *, /)");
-			inputOp = scanner.nextLine();
+			input1 = inputHelper.getInput("Enter first number:");
+			input2 = inputHelper.getInput("Enter second number:");
+			inputOp = inputHelper.getInput("Enter the operation (+, -, *, /)");
 
 			try {
 				switch (inputOp) {
 				case "+":
-					result = add(input1, input2);
+					result = MathHelper.add(input1, input2);
 					break;
 				case "-":
-					result = subtract(input1, input2);
+					result = MathHelper.subtract(input1, input2);
 					break;
 				case "*":
-					result = multiply(input1, input2);
+					result = MathHelper.multiply(input1, input2);
 					break;
 				case "/":
-					result = divide(input1, input2);
+					result = MathHelper.divide(input1, input2);
 					break;
 				default:
 					throw new Exception("Unrecognized operator.");
@@ -41,37 +47,17 @@ public class Calculator {
 				System.out.println(e.getMessage());
 			}
 
-			System.out.println("Continue?");
-			ifContinueOrNot = scanner.nextLine();
-
+			ifContinueOrNot = inputHelper.getInput("Continue? Y/N");
 		}
 	}
+	class InputHelper{
+		private Scanner scanner;
 
-	public static double add(String input1, String input2)
-			throws NumberFormatException {
-		double operand1 = Double.parseDouble(input1);
-		double operand2 = Double.parseDouble(input2);
-		return operand1 + operand2;
+		private String getInput(String prompt){
+			System.out.println(prompt);
+			scanner = new Scanner(System.in);
+			return scanner.nextLine();
+		}
 	}
-
-	public static double subtract(String input1, String input2)
-			throws NumberFormatException {
-		double operand1 = Double.parseDouble(input1);
-		double operand2 = Double.parseDouble(input2);
-		return operand1 - operand2;
-	}
-
-	public static double multiply(String input1, String input2)
-			throws NumberFormatException {
-		double operand1 = Double.parseDouble(input1);
-		double operand2 = Double.parseDouble(input2);
-		return operand1 * operand2;
-	}
-
-	public static double divide(String input1, String input2)
-			throws NumberFormatException {
-		double operand1 = Double.parseDouble(input1);
-		double operand2 = Double.parseDouble(input2);
-		return operand1 / operand2;
-	}
+	
 }
