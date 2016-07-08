@@ -32,6 +32,10 @@ public class EnumTest {
 		public int getOrdinal() {
 			return ordinal();
 		}
+		@Override
+		public String toString(){
+			return this.description;
+		}
 	}
 
 	private Day day;

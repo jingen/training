@@ -9,7 +9,7 @@ import java.sql.Statement;
 /**
  * @author jlin Test
  */
-public class Test {
+public class JDBCConnection {
 
 	public void test() {
 	}
